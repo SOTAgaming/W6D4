@@ -46,6 +46,15 @@ class UsersController < ApplicationController
       render json: user
     end
 
+    def favorites
+      
+
+      favorites = Artwork.joins(:shared_viewers).where("artwork_shares.viewer_id = #{params[:id]}").where(artwork_shares: {favorite?: true})
+
+      render json: favorites
+
+    end
+# .select("artworks.*")
     private
 
     def user_params

@@ -2,10 +2,11 @@
 #
 # Table name: artworks
 #
-#  id        :bigint           not null, primary key
-#  title     :string           not null
-#  image_url :string           not null
-#  artist_id :integer          not null
+#  id               :bigint           not null, primary key
+#  title            :string           not null
+#  image_url        :string           not null
+#  artist_id        :integer          not null
+#  artist_favorite? :boolean          default(FALSE), not null
 #
 
 class Artwork < ApplicationRecord
@@ -29,4 +30,11 @@ class Artwork < ApplicationRecord
     
   has_many :comments,
   dependent: :destroy
+
+  has_many :likes,
+  foreign_key: :like_id,
+  class_name: :Like
+
+  has_many :collections,
+    dependent: :destroy
 end

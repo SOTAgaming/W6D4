@@ -2,11 +2,11 @@ class ArtworkSharesController < ApplicationController
 
 
 
-    # def index
-    #   artworkshares = ArtworkShare.all
+    def index
+      artworkshares = ArtworkShare.all
 
-    #   render json: artworkshares
-    # end
+      render json: artworkshares
+    end
 
     def create
       # render json: params
@@ -24,15 +24,17 @@ class ArtworkSharesController < ApplicationController
     #   render json: artworkshare
     # end
 
-    # def update
-    #   artworkshare = ArtworkShare.find(params[:id])
+    def update
+      debugger
+      artworkshare = ArtworkShare.find(params[:id])
 
-    #   if artworkshare.update(artworkshare_params)
-    #     render json: artworkshare
-    #   else
-    #     render json: artworkshare.errors.full_messages, status: 422
-    #   end
-    # end
+      if artworkshare.update(artworkshare_params)
+        render json: artworkshare
+      else
+        render json: artworkshare.errors.full_messages, status: 422
+      end
+
+    end
 
     def destroy
       artworkshare = ArtworkShare.find(params[:id])
@@ -41,9 +43,10 @@ class ArtworkSharesController < ApplicationController
       render json: artworkshare
     end
 
+
     private
 
     def artworkshare_params
-      params.require(:artworkshare).permit(:artwork_id, :viewer_id)
+      params.require(:artworkshare).permit(:artwork_id, :viewer_id, :favorite?)
     end
 end

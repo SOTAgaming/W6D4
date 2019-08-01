@@ -29,4 +29,11 @@ class User < ApplicationRecord
 
   has_many :comments,
   dependent: :destroy
+
+  has_many :likes,
+  foreign_key: :user_id,
+  class_name: :Like
+
+  has_many :collections,
+    dependent: :destroy
 end

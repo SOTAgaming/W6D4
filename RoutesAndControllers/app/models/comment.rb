@@ -19,4 +19,8 @@ class Comment < ApplicationRecord
   belongs_to :artwork
 
   belongs_to :user
+
+  has_many :likes,
+    foreign_key: :like_id,
+    class_name: :Like
 end

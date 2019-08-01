@@ -5,7 +5,10 @@
 #  id         :bigint           not null, primary key
 #  artwork_id :integer          not null
 #  viewer_id  :integer          not null
+#  favorite?  :boolean          default(FALSE), not null
 #
+
+
 
 class ArtworkShare < ApplicationRecord
   belongs_to :artwork,
